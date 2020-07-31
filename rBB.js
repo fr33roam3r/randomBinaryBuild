@@ -1,14 +1,13 @@
 function randomBinary () {
-    var milliseconds = new Date().getMilliseconds().toString().split('')
-    return Number(milliseconds[2]) % 2
+    return new Date().getMilliseconds() % 2
 }
         
-function randomBinaryBuild (min, max) {
+function random (min, max) {
     do {
         var binaryString = ''
         for (var i = 0; i < max.toString(2).length; i++) {
             binaryString += randomBinary()
         }            
-    } while ( (min > parseInt(binaryString)) || (max < parseInt(binaryString)) )
-    return parseInt(binaryString)
+    } while ( (min > parseInt(binaryString, 2)) || (max < parseInt(binaryString, 2)) )
+    return parseInt(binaryString, 2)
 }
