@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="container">
+	<head>
+		<title>randomBinaryBuild</title>
+        	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+        <style>
+        	body {
+            	margin: 10%;
+            	text-align: center;
+                color: white;
+                background-color: rgb(82, 82, 122);
+                border: yellow solid 3px;
+            }
+            .container {
+            	padding: 10%;
+                padding-bottom: 5%;
+            }
+            button {
+            	height: 5%;
+                width: 20%;
+            }
+        </style>
+	</head>
+	<body class="container">
+		<div class="container">
+			<h1>randomBinaryBuild</h1>
+			<p>A manual, pseudorandom number generator based on time.</p>
+        	</div>
+        	<div class="container">
+        		<input id="min" type="number" placeholder="Minimum"></input>
+        		<input id="max" type="number" placeholder="Maximum"></input>
+        		<br />
+        		<br />
+        		<script>
+            
+            			var binaryString = ""
+        
+        			function randomBinary () {
+            
+            				var min = parseInt(document.getElementById("min").value)
+                			var max = parseInt(document.getElementById("max").value)
+            	
+                			var nanoSecond = new Date().getMilliseconds() % 2
+                			binaryString += nanoSecond.toString()
+                
+                			if (binaryString.length < max.toString(2).length) {
+                
+                				document.getElementById("status").innerText = "Click " + (max.toString(2).length - binaryString.length) + " more times!"
+                    				document.getElementById("result").innerText = binaryString + " === " + parseInt(binaryString, 2)
+                    
+                			} else if ((binaryString.length === max.toString(2).length) && (min <= parseInt(binaryString, 2)) && (parseInt(max) >= parseInt(binaryString, 2))) {
+                
+                				document.getElementById("status").innerText = "Random number generated."
+                    				document.getElementById("result").innerText = binaryString + " === " + parseInt(binaryString, 2)
+                    
+                			} else {
+                
+                				binaryString = ""
+                
+                				document.getElementById("status").innerText = "Click " + max.toString(2).length + " more times!"
+                    				document.getElementById("result").innerText = null
+                
+                			}  
+				}
+            
+    			</script>
+        		<button id="add" class="btn btn-warning" type="button" onclick="randomBinary()">Add</button>
+        		<br />
+        		<br />
+        		<br />
+        		<br />
+        		<p id="status"></p>
+        		<p id="result"></p>
+        	</div>
+	</body>
+</html>
